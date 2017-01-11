@@ -25,7 +25,7 @@ if [ "$testdatejourlune" -eq "0" ]; then
 say "C'est aujourd'hui la pleine lune."
 fi
 if [ "$testdatejourlune" -lt "0" ]; then
-say "La prochaine pleine est passé le $Prochainepleinelune soit il y a $testdatejourlune jour. Actuellement la lune est visible à $lune pourcent."
+say "La prochaine pleine est passé le $Prochainepleinelune soit il y a $testdatejourlune jour. Actuellement la lune est visible à $lune pourcents."
 fi
 }
 
@@ -77,5 +77,39 @@ leverM=`echo "$atrier" | jq -r '.sun_phase.sunrise.minute'`
 coucherH=`echo "$atrier" | jq -r '.sun_phase.sunset.hour'`
 coucherM=`echo "$atrier" | jq -r '.sun_phase.sunset.minute'`
 lune=`echo "$atrier" |jq -r '.moon_phase.percentIlluminated'`
+}
+
+jv_pg_ct_histoiredelune () {
+histoiredelunetrouve=`(echo "$bhistoirenum" | grep ".*sommeil")` && ecoutehistoire="1"
+histoiredelunetrouve=`(echo "$bhistoirenum" | grep ".*ongle")` && ecoutehistoire="2"
+histoiredelunetrouve=`(echo "$bhistoirenum" | grep ".*cheveux")` && ecoutehistoire="2"
+histoiredelunetrouve=`(echo "$bhistoirenum" | grep ".*linge")` && ecoutehistoire="3"
+histoiredelunetrouve=`(echo "$bhistoirenum" | grep ".*irritabilité")` && ecoutehistoire="4"
+histoiredelunetrouve=`(echo "$bhistoirenum" | grep ".*accouchement")` && ecoutehistoire="5"
+histoiredelunetrouve=`(echo "$bhistoirenum" | grep ".*libido")` && ecoutehistoire="6"
+histoiredelunetrouve=`(echo "$bhistoirenum" | grep ".*animaux")` && ecoutehistoire="7"
+histoiredelunetrouve=`(echo "$bhistoirenum" | grep ".*hazard")` && ecoutehistoire=$((1 + RANDOM%(7-1+1)))
+
+citations=(" " "C'est ce que semble montrer une étude réalisée par des chercheurs suisses. Le cycle lunaire semble vraiment affecter le sommeil humain."
+"Vos ongles et vos cheveux pousseraient plus vite. Pendant la période de lune montante, jusqu'à la pleine lune, la taille des vaisseaux capillaires augmenteraient légèrement."
+"Les lingères d’antan avaient aussi pour habitude d’étendre leurs draps sur l’herbe à la pleine lune pour les rendre plus blancs que blancs."
+"Les gens se sentent de plus en plus nerveux à cause de la pression qui accroît dans leur tête, la Lune affecte les marées terrestres et les gens aussi qui sont majoritairement composés d'eau."
+"Les accouchements seraient plus nombreux que la moyenne. On dit également que le nombre de fausses-couches, césariennes, naissance de jumeaux et même de malformations croîtrait ces nuits-là."
+"Elle influencerait grandement votre libido par le rayonnement électromagnétique qui augmente la production d’hormones dans le corps, notamment la testostérone, et donc le désir sexuel."
+"Le cycle lunaire joue sur les marées et influencerait le comportement de certains animaux,  dont les chats, les chiens, les poissons et les oiseaux.")
+# "----------------longueur max d'un texte prononcé par Jarvis-------------------------------------------------------------------------------------------------------------------------------------------"
+say "${citations[$ecoutehistoire]}"
 
 }
+
+jv_pg_ct_verihistoiredelune () {
+bhistoirenum=""
+themehistoirelune=""
+bhistoirenum=`echo "$order"| sed 's/.*lune//'`
+if [[ "$bhistoirenum" == "" ]]; then 
+themehistoirelune="Ennoncez le thème qui vous plairait: le sommeil, les ongles, les cheveux, le linge, l'iritabilité, la libido, les animaux, au hazard"
+else
+jv_pg_ct_histoiredelune
+fi
+}
+

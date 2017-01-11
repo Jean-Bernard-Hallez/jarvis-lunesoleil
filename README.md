@@ -25,5 +25,9 @@ Jarvis:  La prochaine pleine lune aura lieu le 12 janvier soit dans 2 jour. Actu
 Vous: Quelle est la météo pour demain?
 Jarvis: Le soleil se lèvera à 8 heure 14 et il se couchera à 17 heure 22.
 
+Vous: Quelle sont les légendes sur la lune ?
+Jarvis: Ennoncez le thème qui vous plairait : le sommeil, les ongles, les cheveux, le linge, l'iritabilité, la libido, les animaux, au hazard
+Jarvis: Les lingères d’antan avaient aussi pour habitude d’étendre leurs draps sur l’herbe à la pleine lune pour les rendre plus blancs que blancs.
+
 ## Author
 [JB](https://github.com/Jean-Bernard-Hallez/jarvis-lunesoleil)

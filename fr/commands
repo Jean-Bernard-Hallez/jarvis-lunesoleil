@@ -1,4 +1,4 @@
 *PLEINE*LUNE*|*PHASE*LUNE==jv_pg_ct_lune
 *LEVER*SOLEIL*|*COUCHER*SOLEIL*==jv_pg_ct_soleil 
-
-
+*MYSTERE*LUNE*|*LEGENDE*LUNE*==jv_pg_ct_verihistoiredelune; if [ "$bhistoirenum" = "" ]; then say "$themehistoirelune"; else commands="$(jv_get_commands)"; return;fi 
+>(*)==jv_pg_ct_verihistoiredelune; echo " "
