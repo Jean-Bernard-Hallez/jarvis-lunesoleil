@@ -19,7 +19,7 @@ local varlunesoleiljour=`echo $ligne1 | cut -d ' ' -f4`
 local datejourlune=`$(echo date "+%d")`
 testdatejourlune=$(($varlunesoleiljour-$datejourlune))
 if [ "$testdatejourlune" -gt "0" ]; then
-say "La prochaine pleine lune aura lieu le $Prochainepleinelune soit dans $testdatejourlune jour. Actuellement la lune est visible à $lune pourcent."
+say "La prochaine pleine lune aura lieu le $Prochainepleinelune soit dans $testdatejourlune jour. Actuellement la lune est visible à $lune pourcents."
 fi 
 if [ "$testdatejourlune" -eq "0" ]; then
 say "C'est aujourd'hui la pleine lune."
@@ -80,16 +80,25 @@ lune=`echo "$atrier" |jq -r '.moon_phase.percentIlluminated'`
 }
 
 jv_pg_ct_histoiredelune () {
-histoiredelunetrouve=`(echo "$bhistoirenum" | grep ".*sommeil")` && ecoutehistoire="1"
-histoiredelunetrouve=`(echo "$bhistoirenum" | grep ".*ongle")` && ecoutehistoire="2"
-histoiredelunetrouve=`(echo "$bhistoirenum" | grep ".*cheveux")` && ecoutehistoire="2"
-histoiredelunetrouve=`(echo "$bhistoirenum" | grep ".*linge")` && ecoutehistoire="3"
-histoiredelunetrouve=`(echo "$bhistoirenum" | grep ".*irritabilité")` && ecoutehistoire="4"
-histoiredelunetrouve=`(echo "$bhistoirenum" | grep ".*accouchement")` && ecoutehistoire="5"
-histoiredelunetrouve=`(echo "$bhistoirenum" | grep ".*libido")` && ecoutehistoire="6"
-histoiredelunetrouve=`(echo "$bhistoirenum" | grep ".*animaux")` && ecoutehistoire="7"
-histoiredelunetrouve=`(echo "$bhistoirenum" | grep ".*hazard")` && ecoutehistoire=$((1 + RANDOM%(7-1+1)))
 
+if [[ "$bhistoirenum" =~ "sommeil" ]]; then ecoutehistoire="1"; fi
+if [[ "$bhistoirenum" =~ "ongle" ]]; then ecoutehistoire="2"; fi
+if [[ "$bhistoirenum" =~ "cheveux" ]]; then ecoutehistoire="2"; fi
+if [[ "$bhistoirenum" =~ "linge" ]]; then ecoutehistoire="3"; fi
+if [[ "$bhistoirenum" =~ "irritabilité" ]]; then ecoutehistoire="4"; fi
+if [[ "$bhistoirenum" =~ "accouchement" ]]; then ecoutehistoire="5"; fi
+if [[ "$bhistoirenum" =~ "libido" ]]; then ecoutehistoire="6"; fi
+if [[ "$bhistoirenum" =~ "animaux" ]]; then ecoutehistoire="7"; fi
+if [[ "$bhistoirenum" =~ "hazard" ]]; then ecoutehistoire=$((1 + RANDOM%(7-1+1))); fi
+
+if [[ "$ecoutehistoire" == "" ]]; then 
+say  "Il doit y avoir une erreur de prononciation ou légende non trouvé désolé..."
+else
+jv_pg_ct_histoiredeluneGO
+fi
+}
+
+jv_pg_ct_histoiredeluneGO () {
 citations=(" " "C'est ce que semble montrer une étude réalisée par des chercheurs suisses. Le cycle lunaire semble vraiment affecter le sommeil humain."
 "Vos ongles et vos cheveux pousseraient plus vite. Pendant la période de lune montante, jusqu'à la pleine lune, la taille des vaisseaux capillaires augmenteraient légèrement."
 "Les lingères d’antan avaient aussi pour habitude d’étendre leurs draps sur l’herbe à la pleine lune pour les rendre plus blancs que blancs."
@@ -99,13 +108,29 @@ citations=(" " "C'est ce que semble montrer une étude réalisée par des cherch
 "Le cycle lunaire joue sur les marées et influencerait le comportement de certains animaux,  dont les chats, les chiens, les poissons et les oiseaux.")
 # "----------------longueur max d'un texte prononcé par Jarvis-------------------------------------------------------------------------------------------------------------------------------------------"
 say "${citations[$ecoutehistoire]}"
-
+order=""
+ecoutehistoire=""
 }
 
 jv_pg_ct_verihistoiredelune () {
 bhistoirenum=""
 themehistoirelune=""
-bhistoirenum=`echo "$order"| sed 's/.*lune//'`
+ecoutehistoire=""
+# bhistoirenum=`echo "$order"| sed 's/.*lune//'`
+bhistoirenum=`echo "$order"| sed 's/.*lun\.*//'`
+local atraiter=`echo $bhistoirenum| cut -d ' ' -f1`
+if [ "$atraiter" = "aire" -o "$atraiter" = "e" ]; then 
+# bhistoirenum=`echo "$order"| sed 's/.*lun\.*//'`
+bhistoirenum=`echo $bhistoirenum | cut -d ' ' -f2-`
+if [ "$bhistoirenum" = "aire" -o "$atrabhistoirenumiter" = "e" ]; then 
+bhistoirenum=""
+fi
+else 
+bhistoirenum=`echo $bhistoirenum | cut -d ' ' -f2-`
+fi
+
+
+
 if [[ "$bhistoirenum" == "" ]]; then 
 themehistoirelune="Ennoncez le thème qui vous plairait: le sommeil, les ongles, les cheveux, le linge, l'iritabilité, la libido, les animaux, au hazard"
 else
