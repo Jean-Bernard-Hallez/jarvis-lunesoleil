@@ -10,6 +10,7 @@ For multi-language plugin:
 - optionally write the Description / Usage sections in several languages
 -->
 ## Description
+(14/01/17 Correction d'un bug lorsque la lune est passé...)
 Donne l'heure du lever et du coucher du soleil ainsi que la date de la prochaine pleine lune pour Jarvis.
 Nécessite une clé wunderground gratuite - [Obtenir une clé](https://www.wunderground.com/weather/api/).
 

@@ -25,7 +25,8 @@ if [ "$testdatejourlune" -eq "0" ]; then
 say "C'est aujourd'hui la pleine lune."
 fi
 if [ "$testdatejourlune" -lt "0" ]; then
-say "La prochaine pleine est passé le $Prochainepleinelune soit il y a $testdatejourlune jour. Actuellement la lune est visible à $lune pourcents."
+testdatejourlune=`echo $testdatejourlune |cut -c2`
+say "La pleine du mois de $varlunesoleilmois est passé il y a $testdatejourlune jour. Elle est aujourd'hui visible à $lune pourcents."
 fi
 }
 
