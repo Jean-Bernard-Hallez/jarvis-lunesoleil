@@ -33,11 +33,7 @@ Vous: le linge
 Jarvis: Les lingères d’antan avaient aussi pour habitude d’étendre leurs draps sur l’herbe à la pleine lune pour les rendre plus blancs que blancs.
 
 Vous: C'est à quelle heure le lever du soleil ?
-Jarvis: Le soleil se couchera à 7h47
-
-
-Vous: Il se couche à quelle heure le soleil ?
-Jarvis: Le soleil se couchera à 18h34
+Jarvis: Le soleil se couchera à 7h47 et couchera à 18h34
 
 
 ## Author
