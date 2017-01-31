@@ -14,6 +14,7 @@ jv_pg_ct_lunerechernet
 jv_pg_ct_soleiltest
 local ligne=$(sed -n "/$varlunesoleilmois/=" $varlunesoleil)
 local ligne1=$(sed -n "$ligne p;" $varlunesoleil | sed -e "s/\(.*\) .*/\1/" | sed  -e "s/>/\ /g")
+
 Prochainepleinelune=`echo $ligne1 | cut -d ' ' -f4-5`
 local varlunesoleiljour=`echo $ligne1 | cut -d ' ' -f4`
 local datejourlune=`$(echo date "+%d")`
@@ -25,8 +26,9 @@ if [ "$testdatejourlune" -eq "0" ]; then
 say "C'est aujourd'hui la pleine lune."
 fi
 if [ "$testdatejourlune" -lt "0" ]; then
-testdatejourlune=`echo $testdatejourlune |cut -c2`
+testdatejourlune=`echo $testdatejourlune | sed -e "s/-//g"`
 say "La pleine du mois de $varlunesoleilmois est passé il y a $testdatejourlune jour. Elle est aujourd'hui visible à $lune pourcents."
+                                                               
 fi
 }
 

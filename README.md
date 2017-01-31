@@ -10,6 +10,7 @@ For multi-language plugin:
 - optionally write the Description / Usage sections in several languages
 -->
 ## Description
+(31/01/17 Correction d'un bug lorsque la lune est passé...)
 (14/01/17 Correction d'un bug lorsque la lune est passé...)
 Donne l'heure du lever et du coucher du soleil ainsi que la date de la prochaine pleine lune pour Jarvis.
 Nécessite une clé wunderground gratuite - [Obtenir une clé](https://www.wunderground.com/weather/api/).
@@ -30,6 +31,14 @@ Vous: Quelle sont les légendes sur la lune ?
 Jarvis: Ennoncez le thème qui vous plairait : le sommeil, les ongles, les cheveux, le linge, l'iritabilité, la libido, les animaux, au hazard
 Vous: le linge 
 Jarvis: Les lingères d’antan avaient aussi pour habitude d’étendre leurs draps sur l’herbe à la pleine lune pour les rendre plus blancs que blancs.
+
+Vous: C'est à quelle heure le lever du soleil ?
+Jarvis: Le soleil se couchera à 7h47
+
+
+Vous: Il se couche à quelle heure le soleil ?
+Jarvis: Le soleil se couchera à 18h34
+
 
 ## Author
 [JB](https://github.com/Jean-Bernard-Hallez/jarvis-lunesoleil)
