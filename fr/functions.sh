@@ -6,7 +6,7 @@
 # - je tappe 3 fois dans les mains pour arrêter la radio... là dans Led clignotante mettre mpd stop
 
 jv_pg_ct_lune () {
-varlunesoleil="$jv_dir/plugins/jarvis-lunesoleil/phaselune.txt"
+varlunesoleil="$jv_dir/plugins_installed/jarvis-lunesoleil/phaselune.txt"
 varlunesoleilannee=`$(echo date "+%Y")`
 varlunesoleilanneep=$(($varlunesoleilannee+1))
 varlunesoleilmois=`$(echo date "+%B")`
