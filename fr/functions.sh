@@ -18,6 +18,15 @@ local ligne1=$(sed -n "$ligne p;" $varlunesoleil | sed -e "s/\(.*\) .*/\1/" | se
 Prochainepleinelune=`echo $ligne1 | cut -d ' ' -f4-5`
 local varlunesoleiljour=`echo $ligne1 | cut -d ' ' -f4`
 local datejourlune=`$(echo date "+%d")`
+
+cestpassemois="$varlunesoleiljour"
+testlunnelemois
+if [[ "$varlunesoleiljour" != "$cestpassemois" ]]; then datejourlune="$cestpassemois"; fi
+
+cestpassemois="$datejourlune"
+testlunnelemois
+if [[ "$datejourlune" != "$cestpassemois" ]]; then datejourlune="$cestpassemois"; fi
+
 testdatejourlune=$(($varlunesoleiljour-$datejourlune))
 if [ "$testdatejourlune" -gt "0" ]; then
 say "La prochaine pleine lune aura lieu le $Prochainepleinelune soit dans $testdatejourlune jour. Actuellement la lune est visible à $lune pourcents."
@@ -139,5 +148,55 @@ themehistoirelune="Ennoncez le thème qui vous plairait: le sommeil, les ongles,
 else
 jv_pg_ct_histoiredelune
 fi
+}
+
+testlunnelemois() {
+
+if [[ "$cestpassemois" == "01" ]]; then
+cestpassemois=1
+return
+fi
+
+if [[ "$cestpassemois" == "02" ]]; then
+cestpassemois=2
+return
+fi
+
+if [[ "$cestpassemois" == "03" ]]; then
+cestpassemois=3
+return
+fi
+
+if [[ "$cestpassemois" == "04" ]]; then
+cestpassemois=4
+return
+fi
+
+if [[ "$cestpassemois" == "05" ]]; then
+cestpassemois=5
+return
+fi
+
+if [[ "$cestpassemois" == "06" ]]; then
+cestpassemois=6
+return
+fi
+
+if [[ "$cestpassemois" == "07" ]]; then
+cestpassemois=7
+return
+fi
+
+if [[ "$cestpassemois" == "08" ]]; then
+cestpassemois=8
+return
+fi
+
+
+if [[ "$cestpassemois" == "09" ]]; then
+cestpassemois=9
+return
+fi
+return
 }
 

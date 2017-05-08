@@ -10,6 +10,7 @@ For multi-language plugin:
 - optionally write the Description / Usage sections in several languages
 -->
 ## Description
+(08/05/17 Correction suite modif de "Jarvis.sh")
 (02/05/17 Correction suite modif du "plugins_installed")
 (31/01/17 Correction d'un bug lorsque la lune est passé...)
 (14/01/17 Correction d'un bug lorsque la lune est passé...)
